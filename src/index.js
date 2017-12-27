@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {component, Component} from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -11,10 +11,10 @@ const API_KEY = 'AIzaSyAjcM7MXvVJm25MA62LxMWgsbsUtkBJ_zo';
 YTSearch({key:API_KEY, term: 'surfboards'},function(data){
  console.log(data);
 });
-const App= () => {
-  return ( <div>
+class App extends Component{
+render() { return ( <div>
     <SearchBar/>
   </div>);
-  }
+  }}
   ReactDOM.render(<App/>, document.querySelector('.container'));
 
