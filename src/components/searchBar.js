@@ -7,8 +7,16 @@ import React,{ Component } from 'react';
 
 //Class based component 
 class SearchBar  extends  Component {
+    constructor (props){ //called all the time when creating an instant of this class
+        super(props);
+        this.state = {term: ''}; // eveywhere else to manipulate state use this.setstate
+    }
     render () { //ES6 Func
-     return <input onChange={event=>console.log(event.target.value)}/>;// gets the value of the event  }/> ;
+     return (
+     <div>
+     <input onChange={event=>this.setState({term: event.target.value})}/>
+     value of input : {this.state.term}
+    </div>)
     }
 }
 
