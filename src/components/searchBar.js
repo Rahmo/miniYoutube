@@ -1,7 +1,20 @@
-import React from 'react'; 
+import React,{ Component } from 'react'; 
 
-const SearchBar= () => {
-  return <input/> ;
- }
+//functional Component 
+// const SearchBar= () => {
+//   return <input/> ;
+//  }
+
+//Class based component 
+class SearchBar  extends  Component {
+    render () { //ES6 Func
+     return <input onChange={this.onInputChange}/> ;
+    }
+
+    //event Handler always called with an event obj
+    onInputChange(e) {
+        console.log(e.target.value);
+    }
+}
 
  export default SearchBar;
