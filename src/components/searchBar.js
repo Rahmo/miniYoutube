@@ -8,12 +8,7 @@ import React,{ Component } from 'react';
 //Class based component 
 class SearchBar  extends  Component {
     render () { //ES6 Func
-     return <input onChange={this.onInputChange}/> ;
-    }
-
-    //event Handler always called with an event obj
-    onInputChange(e) {
-        console.log(e.target.value);
+     return <input onChange={event=>console.log(event.target.value)}/>;// gets the value of the event  }/> ;
     }
 }
 
