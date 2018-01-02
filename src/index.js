@@ -6,6 +6,8 @@ import { createStore, applyMiddleware } from 'redux';
 import SearchBar from './components/searchBar';
 import YTSearch from 'youtube-api-search';
 import VideoList from './components/videoList'
+import VideoDetail from './components/videoDetail'
+
 const API_KEY = 'AIzaSyAjcM7MXvVJm25MA62LxMWgsbsUtkBJ_zo';
 
 
@@ -14,7 +16,7 @@ class App extends React.Component{
     super(props);
 
     this.state= {videos: []} //starts with the empty array
-    
+
     YTSearch({key:API_KEY, term: 'surfboards'},(videos)=>{ // kicks off a test call
       this.setState({videos}); //ES6 when the key and property is the same name
     });
@@ -22,6 +24,7 @@ class App extends React.Component{
 render() { return ( 
   <div>
     <SearchBar/>
+    <VideoDetail video={this.state.videos[0]}/>
     <VideoList videos={this.state.videos} />
   </div>);
   }}
