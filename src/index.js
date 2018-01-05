@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import _ from 'lodash';
 
 import SearchBar from './components/searchBar';
 import YTSearch from 'youtube-api-search';
@@ -20,7 +21,7 @@ class App extends React.Component{
       selectedVideo:null
     } //starts with the empty array
 
-    this.videoSearch('surfboards');
+    this.videoSearch('Baby one more time');
     }
 
     videoSearch(term){
@@ -31,9 +32,11 @@ class App extends React.Component{
       }); //{video}ES6 when the key and property is the same name
     });
   }
-render() { return ( 
+render() {
+  const videoSearch = _.debounce((term)=>{this.videoSearch(term )},600)
+  return ( 
     <div>
-    <SearchBar onSearchTermChange={term=> this.videoSearch(term)}/>
+    <SearchBar onSearchTermChange={videoSearch}/>
     <VideoDetail video={this.state.selectedVideo}/>
     <VideoList 
     onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
