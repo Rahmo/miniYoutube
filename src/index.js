@@ -20,7 +20,11 @@ class App extends React.Component{
       selectedVideo:null
     } //starts with the empty array
 
-    YTSearch({key:API_KEY, term: 'surfboards'},(videos)=>{ // kicks off a test call
+    this.videoSearch('surfboards');
+    }
+
+    videoSearch(term){
+      YTSearch({key:API_KEY, term: term},(videos)=>{ // kicks off a test call
       this.setState({
         videos:videos,
         selectedVideo: videos[0]
@@ -28,13 +32,15 @@ class App extends React.Component{
     });
   }
 render() { return ( 
-  <div>
-    <SearchBar/>
+    <div>
+    <SearchBar onSearchTermChange={term=> this.videoSearch(term)}/>
     <VideoDetail video={this.state.selectedVideo}/>
     <VideoList 
     onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
     videos={this.state.videos}/>
-  </div>);
-  }}
+    </div>
+    );
+  }
+}
   ReactDOM.render(<App/>, document.querySelector('.container'));
 
